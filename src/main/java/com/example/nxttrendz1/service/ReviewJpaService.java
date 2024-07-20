@@ -59,7 +59,7 @@ public class ReviewJpaService implements ReviewRepository {
     @Override
     public Review addReview(Review review) {
         try {
-            int productId = review.getProduct().getProductid();
+            int productId = review.getProduct().getProductId();
             Product completeProduct = productJpaRepository.findById(productId).get();
             review.setProduct(completeProduct);
             return reviewJpaRepository.save(review);
