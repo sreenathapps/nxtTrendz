@@ -59,10 +59,12 @@ public class ReviewJpaService implements ReviewRepository {
     @Override
     public Review addReview(Review review) {
         try {
+            review.setReviewId(0);
             int productId = review.getProduct().getProductId();
             Product completeProduct = productJpaRepository.findById(productId).get();
             review.setProduct(completeProduct);
-            return reviewJpaRepository.save(review);
+            reviewJpaRepository.save(review);
+            return review;
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
@@ -79,7 +81,9 @@ public class ReviewJpaService implements ReviewRepository {
                 newReview.setReviewContent(review.getReviewContent());                
             }
             if (review.getProduct() != null) {
-                newReview.setProduct(review.getProduct());
+                int productId = review.getProduct().getProductId();
+                Product completeProduct = productJpaRepository.findById(productId).get();
+                newReview.setProduct(completeProduct);
             }
             return reviewJpaRepository.save(newReview);
         }

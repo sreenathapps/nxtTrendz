@@ -43,7 +43,7 @@ public class ProductController {
         return productJpaService.getProducts();
     }
     @PostMapping("/products")
-    public Product addProduct(Product product) {
+    public Product addProduct(@RequestBody Product product) {
         return productJpaService.addProduct(product);
     }
     @GetMapping("/products/{id}")

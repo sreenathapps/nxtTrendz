@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -26,6 +25,8 @@ import org.springframework.web.server.ResponseStatusException;
 import com.example.nxttrendz1.model.Product;
 import com.example.nxttrendz1.repository.ProductJpaRepository;
 import com.example.nxttrendz1.repository.ProductRepository;
+
+import net.bytebuddy.asm.Advice.Return;
 
 /**
  * ProductJpaService
@@ -70,7 +71,8 @@ public class ProductJpaService implements ProductRepository{
 
     @Override
     public Product addProduct(Product product) {
-        return productJpaRepository.save(product);
+        productJpaRepository.save(product);
+        return product;
     }
 
     @Override
