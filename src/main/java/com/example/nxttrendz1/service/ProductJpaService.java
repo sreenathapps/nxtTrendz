@@ -79,7 +79,6 @@ public class ProductJpaService implements ProductRepository{
     public void deleteProduct(int id) {
         try {
             productJpaRepository.deleteById(id);
-            throw new ResponseStatusException(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
