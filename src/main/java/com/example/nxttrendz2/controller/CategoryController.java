@@ -14,7 +14,9 @@ package com.example.nxttrendz2.controller;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.example.nxttrendz2.model.Category;
 import com.example.nxttrendz2.service.CategoryJpaService;
@@ -57,6 +59,7 @@ public class CategoryController {
     @DeleteMapping("categories/{id}")
     public void deleteCategory(@PathVariable("id") int id) {
         categoryJpaService.deleteCategory(id);
+        throw new ResponseStatusException(HttpStatus.NO_CONTENT);
     }
 
 }
