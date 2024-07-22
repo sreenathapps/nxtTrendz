@@ -7,3 +7,23 @@
  */
 
 // Write your code here
+package com.example.nxttrendz2.repository;
+
+import java.util.ArrayList;
+
+import com.example.nxttrendz2.model.Category;
+import com.example.nxttrendz2.model.Product;
+
+/**
+ * ProductRepository
+ */
+public interface ProductRepository {
+
+    ArrayList<Product> getProducts();
+    Product getProductById(int id);
+    Product addProduct(Product product);
+    Product updateProduct(int id, Product product);
+    void deleteProduct(int id);
+    Category getProductCategory(int id);
+    
+}
